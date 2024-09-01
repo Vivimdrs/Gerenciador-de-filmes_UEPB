@@ -1,43 +1,72 @@
 package Atividade01pt1;
-import java.util.ArrayList;
-import java.util.List;
 
-public class Busca implements Busca_IF{
+public class Busca implements Busca_IF{  
     
     @Override
-    public List<Filme> BuscaLinearIterativa(Filme[] filmes, int nota) throws NotaNegativaException{
+    public Filme BuscaLinearIterativa(Filme[] filmes, int nota) throws NotaNegativaException{
         if(nota < 0){
             throw new NotaNegativaException("Nota não pode ser negativa");
         }
-        List<Filme>filmesEncontrados = new ArrayList<>();
         for(Filme filme: filmes){
             if(filme.getNota() == nota){
-                filmesEncontrados.add(filme);
+                return filme;
             }
         }
-        return filmesEncontrados;
+        return null;
     }
     @Override
-    public List<Filme> BuscaLinearRecursiva(Filme[] filmes, int nota, int pos) throws NotaNegativaException{
+    public Filme BuscaLinearRecursiva(Filme[] filmes, int nota, int pos) throws NotaNegativaException{
         if(nota < 0){
             throw new NotaNegativaException("Nota não pode ser negativa");
         }
-        List<Filme> filmesEncontrados = new ArrayList<>();
-        if(pos>= filmes.length){
-            return filmesEncontrados;
+        if(pos >= filmes.length){
+            return null;
         }
         if(filmes[pos].getNota() == nota){
-            filmesEncontrados.add(filmes[pos]);
+            return filmes[pos];
         }
-        filmesEncontrados.addAll(BuscaLinearRecursiva(filmes, nota, pos+1));
-        return filmesEncontrados;
+        return BuscaLinearRecursiva(filmes, nota, pos+1);
     }
     @Override
-    public List<Filme> BuscaBinariaIterativa(Filme[] filmes, int nota) throws NotaNegativaException{
+    public Filme BuscaBinariaIterativa(Filme[] filmes, int nota) throws NotaNegativaException{
         if(nota < 0){
             throw new NotaNegativaException("Nota não pode ser negativa");
         }
-        List<Filme> filmesEncontrados = new ArrayList<>();
-        
+        int ladoEsquerdo = 0;
+        int ladoDireito = filmes.length -1;
+        while (ladoEsquerdo <= ladoDireito) {
+            int meio = ladoEsquerdo + (ladoDireito - ladoEsquerdo)/2;
+            if(filmes[meio].getNota() == nota){
+               return filmes[meio];
+            }
+            if (filmes[meio].getNota() < nota) {
+                ladoEsquerdo = meio+1;
+            }else{
+                ladoDireito = meio+1;
+            }
+
+        }
+        return null;
+
+    }
+    @Override
+    public Filme BuscaBinariaRecursiva(Filme[] filmes, int nota) throws NotaNegativaException{
+        if(nota < 0){
+            throw new NotaNegativaException("Nota não pode ser negativa");
+        }
+        int ladoEsquerdo = 0;
+        int ladoDireito = filmes.length -1;
+        int meio = ladoEsquerdo + (ladoDireito - ladoEsquerdo)/2;
+        if(filmes[meio].getNota() == nota){
+            return filmes[meio];
+        }
+        if(filmes[meio].getNota() > nota){
+            ladoDireito = meio+1;
+            BuscaBinariaRecursiva(filmes, nota);
+        }else{
+            ladoEsquerdo = meio-1;
+            BuscaBinariaRecursiva(filmes, nota);
+        }
+        return null;
     }
 }

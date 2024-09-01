@@ -1,5 +1,4 @@
 package Atividade01pt1;
-import java.util.List;
 import java.util.Random;
 
 public class Teste {
@@ -23,25 +22,22 @@ public class Teste {
 
         int nota = 3;
         Busca busca = new Busca();
-        List<Filme> notaBuscada;
+        Filme filmeProcurado;
 
-        
-		try {
-			notaBuscada = busca.BuscaLinearIterativa(filmes, nota);
-			//notaBuscada = busca.BuscaBinariaIterativa(filmes, nota);
-			//notaBuscada = busca.BuscaLinearRecursiva(filmes, nota);
-			//notaBuscada = busca.BuscaBinariaRecursiva(filmes, nota);
-			if (notaBuscada != null) {
-				System.out.println("\nFilmes encontrados com a nota desejada: ");
-                for(Filme filme: notaBuscada){
-                    System.out.println(filme);
-                }
-			} else {
-				System.out.println("Filme não encontrado");
-			}
-		} catch (NotaNegativaException e) {
-			System.err.println(e.getMessage());
-		}
+        try{
+            //filmeProcurado = busca.BuscaLinearIterativa(filmes, nota);
+            //filmeProcurado = busca.BuscaLinearRecursiva(filmes, nota, 0);
+            //filmeProcurado = busca.BuscaBinariaIterativa(filmes, nota);
+            filmeProcurado = busca.BuscaBinariaRecursiva(filmes, nota);
+            if(filmeProcurado != null){
+                System.out.println("Filme com a nota desejada: ");
+                System.out.println(filmeProcurado);
+            }else{
+                System.out.println("Filme não encontrado");
+            }
+        } catch (NotaNegativaException e){
+            System.err.println(e.getMessage());
+        }
     }
 
     public static Filme[] gerarFilmes(int quantidade){
