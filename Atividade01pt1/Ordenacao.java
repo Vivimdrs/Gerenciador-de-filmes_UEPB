@@ -1,4 +1,6 @@
 package Atividade01pt1;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Ordenacao implements Ordenacao_IF {
 
@@ -20,9 +22,17 @@ public class Ordenacao implements Ordenacao_IF {
 
     }
     @Override
-    public void MergeSort(Filme[] filmes){
+    public void MergeSort(Filme[] filmes, int inicio, int fim){
+        if(inicio < fim){
+            int meio = (inicio + fim)/2;
 
+            MergeSort(filmes, inicio, meio);
+            MergeSort(filmes, meio+1, fim);
+        }
     }
+   // TODO metodo merge;
+
+
     @Override
     public void QuickSort(Filme[] filmes){
 
@@ -33,7 +43,7 @@ public class Ordenacao implements Ordenacao_IF {
     }
     @Override
     public void CountingSort(Filme[] filmes){
-        
+
     }
    
 }
