@@ -1,7 +1,20 @@
 package Atividade01pt1;
 
 public class Busca implements Busca_IF{  
-    
+
+    @Override
+    public boolean checaVetorOrdenado(Filme[] filmes){
+        for(int i = 0; i<filmes.length-1; i++){
+            if(filmes[i].getNota() > filmes[i+1].getNota()){
+                return false;
+            }
+            if(filmes[i].getAno() > filmes[i+1].getNota()){
+                return false;
+            }
+        }
+        return true;
+    }
+   
     @Override
     public Filme BuscaLinearIterativa(Filme[] filmes, int nota) throws NotaNegativaException{
         if(nota < 0){
