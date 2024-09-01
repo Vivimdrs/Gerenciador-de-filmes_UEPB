@@ -42,7 +42,7 @@ public class Busca implements Busca_IF{
             if (filmes[meio].getNota() < nota) {
                 ladoEsquerdo = meio+1;
             }else{
-                ladoDireito = meio+1;
+                ladoDireito = meio-1;
             }
 
         }
@@ -50,23 +50,27 @@ public class Busca implements Busca_IF{
 
     }
     @Override
-    public Filme BuscaBinariaRecursiva(Filme[] filmes, int nota) throws NotaNegativaException{
-        if(nota < 0){
+    public Filme BuscaBinariaRecursiva(Filme[] filmes, int nota) throws NotaNegativaException {
+        if (nota < 0) {
             throw new NotaNegativaException("Nota não pode ser negativa");
         }
-        int ladoEsquerdo = 0;
-        int ladoDireito = filmes.length -1;
-        int meio = ladoEsquerdo + (ladoDireito - ladoEsquerdo)/2;
-        if(filmes[meio].getNota() == nota){
+        return buscaBinariaRecursiva(filmes, nota, 0, filmes.length - 1);
+    }
+    private Filme buscaBinariaRecursiva(Filme[] filmes, int nota, int ladoEsquerdo, int ladoDireito) {
+        if (ladoEsquerdo > ladoDireito) {
+            return null;
+        }
+        
+        int meio = ladoEsquerdo + (ladoDireito - ladoEsquerdo) / 2;
+        
+        if (filmes[meio].getNota() == nota) {
             return filmes[meio];
+        } 
+        
+        if (filmes[meio].getNota() > nota) {
+            return buscaBinariaRecursiva(filmes, nota, ladoEsquerdo, meio - 1);
+        } else {
+            return buscaBinariaRecursiva(filmes, nota, meio + 1, ladoDireito);
         }
-        if(filmes[meio].getNota() > nota){
-            ladoDireito = meio+1;
-            BuscaBinariaRecursiva(filmes, nota);
-        }else{
-            ladoEsquerdo = meio-1;
-            BuscaBinariaRecursiva(filmes, nota);
-        }
-        return null;
     }
 }
