@@ -13,15 +13,16 @@ public class Teste {
         ordem.BubbleSort(filmes);
         //ordem.QuickSort(filmes, 0, 4);
 
-        System.out.println("\nFilmes ordenados:");
+        System.out.println("\nFilmes encontrados:");
         for (Filme filme : filmes) {
             System.out.println(filme);
         }
 
         //ALGORITMOS DE BUSCA
-
         int nota = 3;
         Busca busca = new Busca();
+        boolean res = busca.checaVetorOrdenado(filmes);
+        System.out.println("Vetor ordenado: "+res);
         Filme filmeProcurado;
 
         try{
