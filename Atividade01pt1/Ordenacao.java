@@ -28,10 +28,47 @@ public class Ordenacao implements Ordenacao_IF {
 
             MergeSort(filmes, inicio, meio);
             MergeSort(filmes, meio+1, fim);
+
+            merge(filmes, inicio, meio, fim);
         }
     }
-   // TODO metodo merge;
+    
+    private void merge(Filme[] filmes, int inicio, int meio, int fim) {
+        int n1 = meio - inicio + 1;
+        int n2 = fim - meio;
 
+        Filme[] left = new Filme[n1];
+        Filme[] right = new Filme[n2];
+
+        for (int i = 0; i < n1; i++) {
+            left[i] = filmes[inicio + i];
+        }
+        for (int j = 0; j < n2; j++) {
+            right[j] = filmes[meio + 1 + j];
+        }
+        
+        int i = 0, j = 0, k = inicio;
+        while (i < n1 && j < n2) {
+            if (left[i].getNota() >= right[j].getNota()) {
+                filmes[k] = left[i];
+                i++;
+            } else {
+                filmes[k] = right[j];
+                j++;
+            }
+            k++;
+        }
+        while (i < n1) {
+            filmes[k] = left[i];
+            i++;
+            k++;
+        }
+        while (j < n2) {
+            filmes[k] = right[j];
+            j++;
+            k++;
+        }
+    }
 
     @Override
     public void QuickSort(Filme[] filmes){
