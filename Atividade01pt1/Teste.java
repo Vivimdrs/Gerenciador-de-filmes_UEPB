@@ -10,7 +10,8 @@ public class Teste {
         //ALGORITMOS DE ORDENAÇÃO
 
         Ordenacao ordem = new Ordenacao();
-        ordem.BubbleSort(filmes);
+        //ordem.BubbleSort(filmes);
+        ordem.MergeSort(filmes, 0, 49);
         //ordem.QuickSort(filmes, 0, 4);
 
         System.out.println("\nFilmes encontrados:");
@@ -26,10 +27,10 @@ public class Teste {
         Filme filmeProcurado;
 
         try{
-            //filmeProcurado = busca.BuscaLinearIterativa(filmes, nota);
+            filmeProcurado = busca.BuscaLinearIterativa(filmes, nota);
             //filmeProcurado = busca.BuscaLinearRecursiva(filmes, nota, 0);
             //filmeProcurado = busca.BuscaBinariaIterativa(filmes, nota);
-            filmeProcurado = busca.BuscaBinariaRecursiva(filmes, nota);
+            //filmeProcurado = busca.BuscaBinariaRecursiva(filmes, nota);
             if(filmeProcurado != null){
                 System.out.println("Filme com a nota desejada: ");
                 System.out.println(filmeProcurado);

@@ -1,6 +1,4 @@
 package Atividade01pt1;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Ordenacao implements Ordenacao_IF {
 
@@ -46,7 +44,7 @@ public class Ordenacao implements Ordenacao_IF {
         for (int j = 0; j < n2; j++) {
             right[j] = filmes[meio + 1 + j];
         }
-        
+
         int i = 0, j = 0, k = inicio;
         while (i < n1 && j < n2) {
             if (left[i].getNota() >= right[j].getNota()) {
