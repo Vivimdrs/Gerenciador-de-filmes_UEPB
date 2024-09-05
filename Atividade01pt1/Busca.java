@@ -5,11 +5,15 @@ public class Busca implements Busca_IF{
     @Override
     public boolean checaVetorOrdenado(Filme[] filmes){
         for(int i = 0; i<filmes.length-1; i++){
-            if(filmes[i].getNota() < filmes[i+1].getNota()){
-                return false;
+            if(filmes[i].getNota() > filmes[i+1].getNota()){
+                return true;
+            }else if (filmes[i].getAno() < filmes[i+1].getAno()) {
+                return true;
+            }else if(filmes[i].getNome().compareTo(filmes[i+1].getNome()) < 0){
+                return true;
             }
         }
-        return true;
+        return false;
     }
     
     @Override
@@ -83,4 +87,5 @@ public class Busca implements Busca_IF{
             return buscaBinariaRecursiva(filmes, nota, meio + 1, ladoDireito);
         }
     }
+
 }

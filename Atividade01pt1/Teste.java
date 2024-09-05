@@ -10,8 +10,8 @@ public class Teste {
         //ALGORITMOS DE ORDENAÇÃO
 
         Ordenacao ordem = new Ordenacao();
-        //ordem.BubbleSort(filmes);
-        ordem.MergeSort(filmes, 0, 49);
+        ordem.BubbleSort(filmes);
+        //ordem.MergeSort(filmes, 0, 49);
         //ordem.QuickSort(filmes, 0, 4);
 
         System.out.println("\nFilmes encontrados:");
@@ -55,7 +55,7 @@ public class Teste {
         for(int i = 0; i<quantidade; i++){
             String nome = nomesFilmes[random.nextInt(nomesFilmes.length)] + nomesFilmes2[random.nextInt(nomesFilmes2.length)];
             int nota = random.nextInt(5) + 1;
-            int ano = random.nextInt(2024 - 1990 + 1) - 1990;
+            int ano = random.nextInt(1930, 2024);
 
             filmes[i] = new Filme(nome, nota, ano);
         }

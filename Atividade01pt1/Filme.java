@@ -34,11 +34,10 @@ public class Filme implements Comparable<Filme> {
             return this.nome.compareTo(outro.nome); 
         }
     }
+
     @Override
     public String toString(){
         return
-                "nome='" + nome + '\'' +
-                ", nota=" + nota +
-                ", ano=" + ano;
+               nome + "("+ano+")" + "["+nota+"]";
     }
 }   
