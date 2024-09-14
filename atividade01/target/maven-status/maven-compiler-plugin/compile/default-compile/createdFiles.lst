@@ -1,7 +1,0 @@
-Main.class
-interfaces/Ordenacao_IF.class
-utils/Busca.class
-exceptions/NotaNegativaException.class
-schemas/Filme.class
-interfaces/Busca_IF.class
-utils/Ordenacao.class

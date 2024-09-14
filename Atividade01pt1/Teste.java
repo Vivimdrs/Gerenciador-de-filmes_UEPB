@@ -1,26 +1,19 @@
 package Atividade01pt1;
+import java.util.Arrays;
 import java.util.Random;
 
 public class Teste {
     public static void main(String[] args) {
         
-        int quantidade = 50;
+        final int quantidade = 100000;
         Filme filmes [] = gerarFilmes(quantidade);
+        Filme filmesOrdenados [] = generateSortedArray(quantidade);
+
         
         //ALGORITMOS DE ORDENAÇÃO
-
+        int nota = 0;
         Ordenacao ordem = new Ordenacao();
-        ordem.BubbleSort(filmes);
-        //ordem.MergeSort(filmes, 0, 49);
-        //ordem.QuickSort(filmes, 0, 4);
-
-        System.out.println("\nFilmes encontrados:");
-        for (Filme filme : filmes) {
-            System.out.println(filme);
-        }
-
         //ALGORITMOS DE BUSCA
-        int nota = 3;
         Busca busca = new Busca();
         boolean res = busca.checaVetorOrdenado(filmes);
         System.out.println("Vetor ordenado: "+res);
@@ -40,6 +33,20 @@ public class Teste {
         } catch (NotaNegativaException e){
             System.err.println(e.getMessage());
         }
+        long tempoInicial = System.nanoTime();
+        //Arrays.sort(filmes);
+    
+        //ordem.QuickSort(filmesOrdenados, 0, filmes.length-1);
+        //ordem.QuickSortRandom(filmesOrdenados, 0, filmes.length-1);
+        //ordem.MergeSort(filmesOrdenados, 0, filmes.length-1);
+        //ordem.BubbleSort(filmesOrdenados);
+        //ordem.MergeSort(filmesOrdenados, 0, filmesOrdenados.length-1);
+        //ordem.CountingSort(filmesOrdenados);
+        long tempoFinal = System.nanoTime();
+        
+        double duracao = (tempoFinal - tempoInicial) /1000000000.0; // Converte para milissegundos
+        System.out.println("Tempo de execução: " + duracao + " ms");
+
     }
 
     public static Filme[] gerarFilmes(int quantidade){
@@ -61,5 +68,14 @@ public class Teste {
         }
         return filmes;
     }
+    private static Filme[] generateSortedArray(int size) {
+        Filme[] array = new Filme[size];
+        for (int i = 0; i < size; i++) {
+            // Cria um filme com uma nota crescente
+            array[i] = new Filme(null, i, i);
+        }
+        return array;
+    }
+    
 
 }
