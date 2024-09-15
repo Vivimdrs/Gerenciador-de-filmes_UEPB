@@ -1,29 +1,32 @@
 package Atividade01pt1;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
+import java.util.Collections;
 
 public class Teste {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws NotaNegativaException {
         
-        final int quantidade = 100000;
+        final int quantidade = 1000;
         Filme filmes [] = gerarFilmes(quantidade);
-        Filme filmesOrdenados [] = generateSortedArray(quantidade);
 
         
         //ALGORITMOS DE ORDENAÇÃO
-        int nota = 0;
+        int nota = 3;
         Ordenacao ordem = new Ordenacao();
         //ALGORITMOS DE BUSCA
         Busca busca = new Busca();
-        boolean res = busca.checaVetorOrdenado(filmes);
-        System.out.println("Vetor ordenado: "+res);
         Filme filmeProcurado;
 
         try{
-            filmeProcurado = busca.BuscaLinearIterativa(filmes, nota);
+            long tempoInicial = System.nanoTime();
+            //filmeProcurado = busca.BuscaLinearIterativa(filmes, nota);
             //filmeProcurado = busca.BuscaLinearRecursiva(filmes, nota, 0);
             //filmeProcurado = busca.BuscaBinariaIterativa(filmes, nota);
-            //filmeProcurado = busca.BuscaBinariaRecursiva(filmes, nota);
+            filmeProcurado = busca.BuscaBinariaRecursiva(filmes, nota);
+            long tempoFinal = System.nanoTime();
+            double duracao = (tempoFinal - tempoInicial) /1000000000.0; // Converte para milissegundos
+            System.out.println(duracao);
             if(filmeProcurado != null){
                 System.out.println("Filme com a nota desejada: ");
                 System.out.println(filmeProcurado);
@@ -33,19 +36,16 @@ public class Teste {
         } catch (NotaNegativaException e){
             System.err.println(e.getMessage());
         }
-        long tempoInicial = System.nanoTime();
-        //Arrays.sort(filmes);
-    
-        //ordem.QuickSort(filmesOrdenados, 0, filmes.length-1);
-        //ordem.QuickSortRandom(filmesOrdenados, 0, filmes.length-1);
-        //ordem.MergeSort(filmesOrdenados, 0, filmes.length-1);
-        //ordem.BubbleSort(filmesOrdenados);
-        //ordem.MergeSort(filmesOrdenados, 0, filmesOrdenados.length-1);
-        //ordem.CountingSort(filmesOrdenados);
-        long tempoFinal = System.nanoTime();
+        // long tempoInicial = System.nanoTime();
+        // Arrays.sort(filmes);
+        // busca.BuscaBinariaIterativa(filmes, nota);
+        // //ordem.BubbleSort(filmes);
+        // //ordem.BubbleSort(filmes);
         
-        double duracao = (tempoFinal - tempoInicial) /1000000000.0; // Converte para milissegundos
-        System.out.println("Tempo de execução: " + duracao + " ms");
+        // long tempoFinal = System.nanoTime();
+        
+        // double duracao = (tempoFinal - tempoInicial) /1000000000.0; // Converte para milissegundos
+        // System.out.println("Tempo de execução: " + duracao + " ms");
 
     }
 
@@ -68,14 +68,5 @@ public class Teste {
         }
         return filmes;
     }
-    private static Filme[] generateSortedArray(int size) {
-        Filme[] array = new Filme[size];
-        for (int i = 0; i < size; i++) {
-            // Cria um filme com uma nota crescente
-            array[i] = new Filme(null, i, i);
-        }
-        return array;
-    }
     
-
 }
